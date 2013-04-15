@@ -81,8 +81,9 @@ function twitter_post_node_insert($node) {
     module_load_include('inc', 'twitter');
 
     $twitter_account = twitter_account_load($node->twitter['account']);
+    $max_title = 90;
     $replacements = array(
-      '!title' => $node->title,
+      '!title' => truncate_utf8($node->title, $max_title, false, true),
       '!url' => url('node/' . $node->nid, array('absolute' => TRUE, 'alias' => TRUE)),
       '!url-alias' => url('node/' . $node->nid, array('absolute' => TRUE)),
       '!user' => $node->name,
